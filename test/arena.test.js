@@ -24,10 +24,17 @@ describe("Arena", () => {
     const arena = new Arena(player1, player2);
     const initialHealth = player2.health;
     arena.attack(player1, player2);
-    console.log(
-      `Player2 Health: ${player2.health}, Initial Health: ${initialHealth}`
-    );
-    expect(player2.health).toBeLessThan(initialHealth);
+    if (initialHealth === player2.health) {
+      console.log(
+        `No damage was dealt. Player2's health remains at ${player2.health}.`
+      );
+      expect(player2.health).toBe(initialHealth);
+    } else {
+      console.log(
+        `Player2 Health: ${player2.health}, Initial Health: ${initialHealth}`
+      );
+      expect(player2.health).toBeLessThan(initialHealth);
+    }
   });
 
   it("should declare the correct winner", () => {

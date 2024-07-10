@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node main.js",
-    "test": "vitest"
+    "test": "vitest",
+    "coverage": "c8 vitest"
   },
   "keywords": [],
   "author": "",
