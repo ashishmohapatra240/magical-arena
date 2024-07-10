@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
-import Player from "./src/player";
+import { describe, it, expect } from 'vitest';
+import Player from '../src/player.js';
 
 describe("Player", () => {
   it("should initialize with correct attributes", () => {

@@ -1,4 +1,4 @@
-const Player = require('./player');
+import Player from './player.js';
 class Arena {
   constructor(player1, player2) {
     if (!(player1 instanceof Player) || !(player2 instanceof Player)) {
@@ -51,4 +51,4 @@ class Arena {
   }
 }
 
-module.exports = Arena;
+export default Arena;
