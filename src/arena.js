@@ -1,5 +1,8 @@
 class Arena {
   constructor(player1, player2) {
+    if (!(player1 instanceof Player) || !(player2 instanceof Player)) {
+      throw new Error("Arguments must be instances of Player.");
+    }
     this.player1 = player1;
     this.player2 = player2;
     this.currentPlayer = player1.health > player2.health ? player2 : player1;
