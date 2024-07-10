@@ -1,3 +1,4 @@
+const Player = require('./player');
 class Arena {
   constructor(player1, player2) {
     if (!(player1 instanceof Player) || !(player2 instanceof Player)) {
