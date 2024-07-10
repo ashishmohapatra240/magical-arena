@@ -7,9 +7,9 @@ class Arena {
   }
 
   fight() {
-    while (!this.isGameOver) {
+    while (!this.isGameOver()) {
       this.attack(this.currentPlayer, this.currentDefender);
-      this.switchPlayers(this.currentPlayer, this.currentDefender);
+      this.switchPlayers();
     }
     return this.getWinner();
   }
@@ -18,13 +18,26 @@ class Arena {
     const defendRoll = defender.rollDice();
     const damage =
       attacker.attack * attackRoll - defender.strength * defendRoll;
+    console.log(
+      `Attacker rolls: ${attackRoll}, Defender rolls: ${defendRoll}, Damage: ${damage}`
+    );
     if (damage > 0) {
       defender.takeDamage(damage);
     }
   }
 
-  switchPlayers(player1, player2) {
-    [player1, player2] = [player2, player1];
+  switchPlayers() {
+    [this.currentPlayer, this.currentDefender] = [
+      this.currentDefender,
+      this.currentPlayer,
+    ];
+  }
+
+  isGameOver() {
+    console.log(
+      `Player1 Health: ${this.player1.health}, Player2 Health: ${this.player2.health}`
+    );
+    return this.player1.health === 0 || this.player2.health === 0;
   }
 
   getWinner() {
@@ -34,4 +47,4 @@ class Arena {
   }
 }
 
-module.export = Arena;
+module.exports = Arena;

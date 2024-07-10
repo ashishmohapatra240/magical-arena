@@ -1,11 +1,11 @@
 class Player {
   constructor(health, strength, attack) {
-    this.health;
-    this.strength;
-    this.attack;
+    this.health = health;
+    this.strength = strength;
+    this.attack = attack;
   }
-  rollBack() {
-    Math.floor(Math.random() * 6 + 1);
+  rollDice() {
+    return Math.floor(Math.random() * 6 + 1);
   }
 
   takeDamage(damage) {
@@ -14,4 +14,4 @@ class Player {
   }
 }
 
-module.export = Player;
+module.exports = Player;
