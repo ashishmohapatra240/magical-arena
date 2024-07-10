@@ -1,4 +1,5 @@
 import Player from "./player.js";
+
 // Arena class representing the arena where players fight
 class Arena {
   constructor(player1, player2) {
@@ -10,6 +11,7 @@ class Arena {
     this.currentPlayer = player1.health > player2.health ? player2 : player1;
     this.currentDefender = player1.health > player2.health ? player1 : player2;
   }
+
   // Conduct the fight until one player dies
   fight() {
     while (!this.isGameOver()) {
@@ -25,9 +27,16 @@ class Arena {
     const defendRoll = defender.rollDice();
     const damage =
       attacker.attack * attackRoll - defender.strength * defendRoll;
+    const attackerNumber = attacker === this.player1 ? 1 : 2;
+    const defenderNumber = defender === this.player1 ? 1 : 2;
+
+    console.log(`Player ${attackerNumber} attacks!`);
     console.log(
-      `Attacker rolls: ${attackRoll}, Defender rolls: ${defendRoll}, Damage: ${damage}`
+      `Attacker (Player ${attackerNumber}) rolls: ${attackRoll}, Defender (Player ${defenderNumber}) rolls: ${defendRoll}, Damage: ${
+        damage > 0 ? damage : 0
+      }`
     );
+
     if (damage > 0) {
       defender.takeDamage(damage);
     }
@@ -40,18 +49,22 @@ class Arena {
       this.currentPlayer,
     ];
   }
+
   // Check if the game is over (if any player's health is 0)
   isGameOver() {
     console.log(
-      `Player1 Health: ${this.player1.health}, Player2 Health: ${this.player2.health}`
+      `Player 1 Health: ${this.player1.health}, Player 2 Health: ${this.player2.health}`
     );
     return this.player1.health === 0 || this.player2.health === 0;
   }
+
   // Get the winner of the fight
   getWinner() {
-    return this.player1.health > this.player2.health
-      ? this.player1
-      : this.player2;
+    if (this.player1.health > this.player2.health) {
+      return { winner: this.player1, playerNumber: 1 };
+    } else {
+      return { winner: this.player2, playerNumber: 2 };
+    }
   }
 }
 

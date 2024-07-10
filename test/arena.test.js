@@ -41,8 +41,11 @@ describe("Arena", () => {
     const player1 = new Player(1, 5, 10);
     const player2 = new Player(100, 10, 5);
     const arena = new Arena(player1, player2);
-    const winner = arena.fight();
-    console.log(`Winner: ${winner.health}`);
+    const winnerInfo = arena.fight();
+    const winner = winnerInfo.winner;
+    console.log(
+      `Winner: Player ${winnerInfo.playerNumber} with health: ${winner.health}`
+    );
     expect(winner).toBe(player2);
   });
 
